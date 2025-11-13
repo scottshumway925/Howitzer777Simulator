@@ -2,7 +2,7 @@
  * Header File:
  *    ACCELERATION 
  * Author:
- *    <your name here>
+ *    Scott Shumway & Kaitlin Heusner
  * Summary:
  *    Everything we need to know about acceleration
  ************************************************************************/
