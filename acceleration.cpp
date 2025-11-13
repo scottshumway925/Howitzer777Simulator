@@ -20,5 +20,12 @@
  *********************************************/
 void Acceleration::set(const Angle & a, double magnitude)
 {
-   
+   ddx = magnitude * sin((a.getRadians()));
+   ddy = magnitude * cos((a.getRadians()));
+}
+
+void Acceleration::addAcceleration(Acceleration acc)
+{
+   ddx += acc.getDDX();
+   ddy += acc.getDDY();
 }
