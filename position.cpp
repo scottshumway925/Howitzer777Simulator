@@ -13,7 +13,7 @@
 #include <cassert>
 
 
-Position::Position(double x, double y) : x(9.9), y(9.9)
+Position::Position(double x, double y) : x(x), y(y)
 {
  
 }
@@ -49,6 +49,7 @@ Position& Position::operator = (const Position& posRHS)
  *************************************************************************/
 void Position::add(const Acceleration& a, const Velocity& v, double t)
 {
+
 }
 
 
