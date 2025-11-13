@@ -709,7 +709,25 @@ private:
     *********************************************/
    void addV_stationary()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      //setup
+      Velocity vLHS;
+      vLHS.dx = 0;
+      vLHS.dy = 0;
+
+      Velocity vRHS;
+      vRHS.dx = 2.3;
+      vRHS.dy = 4.5;
+
+      //exercise
+      vLHS.addV(vRHS);
+
+      //verify
+      assertEquals(vRHS.dx, 2.3);
+      assertEquals(vRHS.dy, 4.5);
+      assertEquals(vLHS.dx, 2.3);
+      assertEquals(vLHS.dy, 4.5);
+
+      //teardown
    }
 
    /*********************************************
@@ -719,7 +737,26 @@ private:
     *********************************************/
    void addV_nothing()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      //setup
+      Velocity vLHS;
+      vLHS.dx = 2.3;
+      vLHS.dy = 4.5;
+
+      Velocity vRHS;
+      vRHS.dx = 0;
+      vRHS.dy = 0;
+
+      //exercise
+      vLHS.addV(vRHS);
+
+      //verify
+      assertEquals(vRHS.dx, 0);
+      assertEquals(vRHS.dy, 0);
+      assertEquals(vLHS.dx, 2.3);
+      assertEquals(vLHS.dy, 4.5);
+
+      //teardown
+
    }
 
    /*********************************************
@@ -729,7 +766,25 @@ private:
     *********************************************/
    void addV_moving()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      //setup
+      Velocity vLHS;
+      vLHS.dx = 2.3;
+      vLHS.dy = 4.5;
+
+      Velocity vRHS;
+      vRHS.dx = 100;
+      vRHS.dy = 200;
+
+      //exercise
+      vLHS.addV(vRHS);
+
+      //verify
+      assertEquals(vRHS.dx, 100);
+      assertEquals(vRHS.dy, 200);
+      assertEquals(vLHS.dx, 102.3);
+      assertEquals(vLHS.dy, 204.5);
+
+      //teardown
    }
 
 };
