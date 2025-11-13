@@ -27,6 +27,8 @@ Position::Position(double x, double y) : x(x), y(y)
  *****************************************/
 Position& Position::operator = (const Position& posRHS)
 {
+   this->x = posRHS.getMetersX();
+   this->y = posRHS.getMetersY();
    return *this;
 }
 
@@ -49,7 +51,8 @@ Position& Position::operator = (const Position& posRHS)
  *************************************************************************/
 void Position::add(const Acceleration& a, const Velocity& v, double t)
 {
-
+   x = x + (v.getDX() * t) + (.5 * a.getDDX() * std::pow(t, 2));
+   y = y + (v.getDY() * t) + (.5 * a.getDDY() * std::pow(t, 2));
 }
 
 
