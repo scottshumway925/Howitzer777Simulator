@@ -455,7 +455,14 @@ private:
     *********************************************/
    void reverse_stationary()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = 0;
+      v.dy = 0;
+
+      v.reverse();
+
+      assertEquals(v.dx, 0);
+      assertEquals(v.dy, 0);
    }
 
    /*********************************************
@@ -465,7 +472,14 @@ private:
     *********************************************/
    void reverse_up()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = 0;
+      v.dy = 10;
+
+      v.reverse();
+
+      assertEquals(v.dx, 0);
+      assertEquals(v.dy, -10);
    }
 
    /*********************************************
@@ -475,7 +489,14 @@ private:
     *********************************************/
    void reverse_down()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = 0;
+      v.dy = -12.34;
+
+      v.reverse();
+
+      assertEquals(v.dx, 0);
+      assertEquals(v.dy, 12.34);
    }
 
    /*********************************************
@@ -485,7 +506,14 @@ private:
     *********************************************/
    void reverse_left()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = -300;
+      v.dy = 0;
+
+      v.reverse();
+
+      assertEquals(v.dx, 300);
+      assertEquals(v.dy, 0);
    }
 
    /*********************************************
@@ -495,7 +523,14 @@ private:
     *********************************************/
    void reverse_right()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = 0.0123;
+      v.dy = 0;
+
+      v.reverse();
+
+      assertEquals(v.dx, -0.0123);
+      assertEquals(v.dy, 0);
    }
 
    /*********************************************
@@ -505,7 +540,14 @@ private:
     *********************************************/
    void reverse_diagonal()
    {
-      assertUnit(NOT_YET_IMPLEMENTED);
+      Velocity v;
+      v.dx = 123.456;
+      v.dy = -7.89;
+
+      v.reverse();
+
+      assertEquals(v.dx, -123.456);
+      assertEquals(v.dy, 7.89);
    }
 
    /*****************************************************************

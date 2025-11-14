@@ -54,7 +54,11 @@ public:
       dx += rhs.getDX();
       dy += rhs.getDY();
    }
-   void reverse() { }
+   void reverse() 
+   {
+      dx *= -1;
+      dy *= -1;
+   }
 
 private:
    double dx;           // horizontal velocity
