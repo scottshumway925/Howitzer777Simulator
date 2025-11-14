@@ -455,14 +455,19 @@ private:
     *********************************************/
    void reverse_stationary()
    {
+      //setup
       Velocity v;
       v.dx = 0;
       v.dy = 0;
 
+      //exercise
       v.reverse();
-
+         
+      //verify
       assertEquals(v.dx, 0);
       assertEquals(v.dy, 0);
+
+      //teardown
    }
 
    /*********************************************
@@ -472,14 +477,19 @@ private:
     *********************************************/
    void reverse_up()
    {
+      //setup
       Velocity v;
       v.dx = 0;
       v.dy = 10;
 
+      //exercise
       v.reverse();
 
+      //verify
       assertEquals(v.dx, 0);
       assertEquals(v.dy, -10);
+
+      //teardown
    }
 
    /*********************************************
@@ -489,14 +499,19 @@ private:
     *********************************************/
    void reverse_down()
    {
+      //setup
       Velocity v;
       v.dx = 0;
       v.dy = -12.34;
 
+      //exercise
       v.reverse();
 
+      //verify
       assertEquals(v.dx, 0);
       assertEquals(v.dy, 12.34);
+
+      //teardown
    }
 
    /*********************************************
@@ -506,14 +521,19 @@ private:
     *********************************************/
    void reverse_left()
    {
+      //setup
       Velocity v;
       v.dx = -300;
       v.dy = 0;
 
+      //exercise
       v.reverse();
 
+      //verify
       assertEquals(v.dx, 300);
       assertEquals(v.dy, 0);
+      
+      //teardown
    }
 
    /*********************************************
@@ -523,14 +543,19 @@ private:
     *********************************************/
    void reverse_right()
    {
+      //setup
       Velocity v;
       v.dx = 0.0123;
       v.dy = 0;
 
+      //exercise
       v.reverse();
 
+      //verify
       assertEquals(v.dx, -0.0123);
       assertEquals(v.dy, 0);
+      
+      //teardown
    }
 
    /*********************************************
@@ -540,14 +565,19 @@ private:
     *********************************************/
    void reverse_diagonal()
    {
+      //setup
       Velocity v;
       v.dx = 123.456;
       v.dy = -7.89;
 
+      //exercise
       v.reverse();
 
+      //verify
       assertEquals(v.dx, -123.456);
       assertEquals(v.dy, 7.89);
+      
+      //teardown
    }
 
    /*****************************************************************
