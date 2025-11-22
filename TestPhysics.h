@@ -1301,7 +1301,6 @@ private:
       double density = -999.999;
       // exercise
       density = densityFromAltitude(altitude);
-      std::cout << density << std::endl;
       // verify
       assertEquals(altitude, 3666.6);
       assertEquals(density, 0.849372);
