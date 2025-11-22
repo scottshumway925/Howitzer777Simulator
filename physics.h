@@ -2,7 +2,7 @@
  * Header File:
  *    PHYSICS
  * Author:
- *    <your name here>
+ *    Scott Shumway & Kaitlin Heusner
  * Summary:
  *    Laws of motion, effects of gravity, wind resistence, etc.
  ************************************************************************/
@@ -50,7 +50,7 @@ inline double forceFromDrag(double density, double drag,
  ************************************************************/
 inline double accelerationFromForce(double force, double mass)
 {
-   return mass * force;
+   return force / mass;
 }
 
 /***********************************************************
