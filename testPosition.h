@@ -2,7 +2,7 @@
  * Header File:
  *    TEST POSITION
  * Author:
- *    <your name here>
+ *    Scott Shumway & Kaitlin Heusner
  * Summary:
  *    Unit tests for the Position class.
  ************************************************************************/

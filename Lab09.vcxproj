@@ -141,10 +141,12 @@
   <ItemGroup>
     <ClInclude Include="acceleration.h" />
     <ClInclude Include="angle.h" />
+    <ClInclude Include="physics.h" />
     <ClInclude Include="position.h" />
     <ClInclude Include="test.h" />
     <ClInclude Include="testAcceleration.h" />
     <ClInclude Include="testAngle.h" />
+    <ClInclude Include="TestPhysics.h" />
     <ClInclude Include="testPosition.h" />
     <ClInclude Include="testVelocity.h" />
     <ClInclude Include="unitTest.h" />
@@ -154,8 +156,10 @@
     <ClCompile Include="acceleration.cpp" />
     <ClCompile Include="angle.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="physics.cpp" />
     <ClCompile Include="position.cpp" />
     <ClCompile Include="test.cpp" />
+    <ClCompile Include="TestPhysics.cpp" />
     <ClCompile Include="velocity.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
