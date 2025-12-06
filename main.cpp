@@ -30,12 +30,8 @@ void callBack(const Interface* pUI, void* p)
    Simulator* pSim = (Simulator*)p;
 
    ogstream gout;
-   pSim->howitzer.draw(gout, 0);
-   pSim->ground.draw(gout);
-
-   Position pos(50,50);
-   gout = pos;
-   gout << "Hello world";
+   pSim->getHowitzer().draw(gout, 0);
+   pSim->getGround().draw(gout);
 }
 
 double Position::metersFromPixels = 40.0;

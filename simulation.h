@@ -21,6 +21,9 @@ class Simulator
 {
 public:
    Simulator(const Position& posUpperRight) { ground = Ground(posUpperRight); }
+   Howitzer getHowitzer() { return howitzer; }
+   Ground getGround() { return ground; }
+private:
    Howitzer howitzer;
    Ground ground;
 };
