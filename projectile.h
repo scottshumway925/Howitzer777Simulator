@@ -10,6 +10,7 @@
 #pragma once
 
 #include <list>
+#include "angle.h"
 #include "position.h"
 #include "velocity.h"
 #include "physics.h"
@@ -32,15 +33,91 @@ public:
    friend ::TestProjectile;
 
    // create a new projectile with the default settings
-   Projectile() : mass(-99.9), radius(-99.9) {}
+   Projectile() : mass(46.7), radius(0.077545) {}
 
+   void Reset()
+   {
+      mass = 46.7;
+      radius = 0.077545;
+      flightPath.clear();
+   }
 
+   void fire(Angle angle, Position &pos, Velocity muzzle)
+   {
+      const double gravity = -9.80665;
+      double time = 1.0;
+      double theta = angle.getDegrees() * M_PI / 180.0;
+      double speed = muzzle.getSpeed();
+
+      double initialVelocityX = speed * sin(theta);
+      double initialVelocityY = speed * cos(theta);
+      Velocity initialVelocity(initialVelocityX, initialVelocityY);
+
+      Projectile::PositionVelocityTime pvt;
+      pvt.pos = pos;
+      pvt.v = initialVelocity;
+      pvt.t = time;
+
+      flightPath.push_back(pvt);
+   }
 
    // advance the round forward until the next unit of time
-   void advance(double simulationTime) {}
+   void advance(double simulationTime) 
+   {
+      if (flightPath.empty())
+         return;
 
+      const PositionVelocityTime& prev = flightPath.back();
+      double dt = simulationTime - prev.t;
+      if (dt <= 0.0) 
+         dt = 1.0; 
 
+      double x = prev.pos.getMetersX();
+      double y = prev.pos.getMetersY();
+      double velocityX = prev.v.getDX();
+      double velocityY = prev.v.getDY();
 
+      double accelerationX = 0.0;
+      double accelerationY = 0.0;
+
+      if (velocityX == 0.0 && velocityY == 0.0)
+      {
+         accelerationX = 0.0;
+         accelerationY = -9.8064; 
+      }
+      else
+      {
+         double altitude = y;
+         double gravity = -gravityFromAltitude(altitude);
+
+         double speed = sqrt(velocityX * velocityX + velocityY * velocityY);
+         double density = densityFromAltitude(altitude);
+         double speedOfSound = speedSoundFromAltitude(altitude);
+         double mach = speed / speedOfSound;
+         double dragCoeff = dragFromMach(mach);
+
+         double dragForce = forceFromDrag(density, dragCoeff, radius, speed);
+         double dragAccel = accelerationFromForce(dragForce, mass);
+
+         accelerationX = -(dragAccel * (velocityX / speed));
+         accelerationY = -(dragAccel * (velocityY / speed)) + gravity;
+      }
+
+      double newVX = velocityX + accelerationX * dt;
+      double newVY = velocityY + accelerationY * dt;
+
+      double newX = x + velocityX * dt + 0.5 * accelerationX * dt * dt;
+      double newY = y + velocityY * dt + 0.5 * accelerationY * dt * dt;
+
+      PositionVelocityTime pvt;
+      pvt.pos.setMetersX(newX);
+      pvt.pos.setMetersY(newY);
+      pvt.v.setDX(newVX);
+      pvt.v.setDY(newVY);
+      pvt.t = prev.t + dt;
+
+      flightPath.push_back(pvt);
+   }
 
 private:
 
