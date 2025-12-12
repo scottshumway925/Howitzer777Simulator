@@ -46,4 +46,9 @@ void Simulator::update(const Interface* pUI, void* p)
    {
       howitzer.raise(.01);
    }
+
+   if (pUI->isQ())
+   {
+      resetGame();
+   }
 }
