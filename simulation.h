@@ -11,6 +11,7 @@
 #include "position.h"
 #include "howitzer.h"
 #include "ground.h"
+#include "uiInteract.h"
 
 
  /*********************************************
@@ -24,16 +25,9 @@ public:
    Position posUpperRight;
    Howitzer getHowitzer() { return howitzer; }
    Ground getGround() { return ground; }
+   void resetGame();
+   void update(const Interface* pUI, void* p);
 
-   /*********************************************
-   * Reset Game
-   * Resets the position of the howitzer, ground, and target
-   *********************************************/
-   void resetGame()
-   {
-      howitzer.generatePosition(posUpperRight);
-      ground.reset(howitzer.getPosition());
-   }
 private:
    Howitzer howitzer;
    Ground ground;

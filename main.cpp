@@ -35,11 +35,11 @@ void callBack(const Interface* pUI, void* p)
       pSim->resetGame();
       needsReset = false;
    }
-      
 
    ogstream gout;
    pSim->getHowitzer().draw(gout, 0);
    pSim->getGround().draw(gout);
+   pSim->update(pUI, p);
 }
 
 double Position::metersFromPixels = 40.0;
