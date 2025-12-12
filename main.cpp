@@ -36,9 +36,6 @@ void callBack(const Interface* pUI, void* p)
       needsReset = false;
    }
 
-   ogstream gout;
-   pSim->getHowitzer().draw(gout, 0);
-   pSim->getGround().draw(gout);
    pSim->update(pUI, p);
 }
 

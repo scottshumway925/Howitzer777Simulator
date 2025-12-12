@@ -21,11 +21,12 @@ void Simulator::resetGame()
 
 void Simulator::update(const Interface* pUI, void* p)
 {
-   // the first step is to cast the void pointer into a game object. This
-   // is the first step of every single callback function in OpenGL. 
    Simulator* pSimulator = (Simulator*)p;
 
    ogstream gout;
+   howitzer.draw(gout, 1);
+   ground.draw(gout);
+
 
    if (pUI->isLeft())
    {
