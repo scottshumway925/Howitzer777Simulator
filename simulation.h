@@ -12,6 +12,7 @@
 #include "howitzer.h"
 #include "ground.h"
 #include "uiInteract.h"
+#include "projectile.h"
 
 
  /*********************************************
@@ -31,4 +32,7 @@ public:
 private:
    Howitzer howitzer;
    Ground ground;
+   Projectile projectile;
+   double flightTime = 100;
+   bool hasFired = false;
 };

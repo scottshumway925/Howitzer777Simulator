@@ -7,7 +7,8 @@
  *    Execute one simulation of a projectile being fired.
  ************************************************************************/
 
- #include "simulation.h"  // for SIMULATION
+#include "simulation.h"  // for SIMULATION
+
 
  /*********************************************
  * Reset Game
@@ -24,9 +25,15 @@ void Simulator::update(const Interface* pUI, void* p)
    Simulator* pSimulator = (Simulator*)p;
 
    ogstream gout;
-   howitzer.draw(gout, 1);
+   howitzer.draw(gout, flightTime);
    ground.draw(gout);
 
+   if (hasFired)
+   {
+      flightTime++;
+      projectile.advance(1);
+      projectile.draw(gout);
+   }
 
    if (pUI->isLeft())
    {
@@ -51,5 +58,14 @@ void Simulator::update(const Interface* pUI, void* p)
    if (pUI->isQ())
    {
       resetGame();
+   }
+
+   if (pUI->isSpace())
+   {
+      hasFired = true;
+      flightTime = 0;
+      Velocity muzzleVelocity;
+      muzzleVelocity.set(howitzer.getElevation(), howitzer.getMuzzleVelocity());
+      projectile.fire(howitzer.getElevation(), howitzer.getPosition(), muzzleVelocity);
    }
 }

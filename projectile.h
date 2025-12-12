@@ -119,6 +119,14 @@ public:
       flightPath.push_back(pvt);
    }
 
+   void draw(ogstream& gout)
+   {
+      for (PositionVelocityTime& projectile : flightPath)
+      {
+         gout.drawProjectile(projectile.pos, projectile.t);
+      }
+   }
+
 private:
 
    // keep track of one moment in the path of the projectile
