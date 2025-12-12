@@ -32,7 +32,7 @@ void Simulator::update(const Interface* pUI, void* p)
    {
       flightTime++;
       projectile.advance(1);
-      projectile.draw(gout);
+      projectile.draw(gout, flightTime);
    }
 
    if (pUI->isLeft())

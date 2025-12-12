@@ -119,11 +119,11 @@ public:
       flightPath.push_back(pvt);
    }
 
-   void draw(ogstream& gout)
+   void draw(ogstream& gout, double flightTime)
    {
       for (PositionVelocityTime& projectile : flightPath)
       {
-         gout.drawProjectile(projectile.pos, projectile.t);
+         gout.drawProjectile(projectile.pos, flightTime - projectile.t);
       }
    }
 
