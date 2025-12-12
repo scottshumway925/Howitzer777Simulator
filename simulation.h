@@ -20,9 +20,20 @@
 class Simulator
 {
 public:
-   Simulator(const Position& posUpperRight) { ground = Ground(posUpperRight); }
+   Simulator(const Position& posUpperRight) : posUpperRight(posUpperRight) { ground = Ground(posUpperRight); }
+   Position posUpperRight;
    Howitzer getHowitzer() { return howitzer; }
    Ground getGround() { return ground; }
+
+   /*********************************************
+   * Reset Game
+   * Resets the position of the howitzer, ground, and target
+   *********************************************/
+   void resetGame()
+   {
+      howitzer.generatePosition(posUpperRight);
+      ground.reset(howitzer.getPosition());
+   }
 private:
    Howitzer howitzer;
    Ground ground;
