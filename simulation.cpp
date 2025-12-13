@@ -27,12 +27,30 @@ void Simulator::update(const Interface* pUI, void* p)
    ogstream gout;
    howitzer.draw(gout, flightTime);
    ground.draw(gout);
+   //gout << "Projectile Altitude: " << projectile.getPosition().getMetersY();
+   //gout << "Projectile Position: " << projectile.getPosition().getMetersY();
+
+   projectile.advance(1);
 
    if (hasFired)
    {
       flightTime++;
-      projectile.advance(1);
       projectile.draw(gout, flightTime);
+
+      Position projectileLocation = projectile.getPosition();
+      double x = projectileLocation.getMetersX();
+      double y = projectileLocation.getMetersY();
+
+      if (y <= ground.getElevationMeters(projectileLocation))
+      {
+         hasFired = false;
+
+         double targetLocation = ground.getTarget().getMetersX();
+         if (x > (targetLocation - 1000) && (x < targetLocation + 1000))
+         {
+            resetGame();
+         }
+      }
    }
 
    if (pUI->isLeft())
@@ -62,10 +80,13 @@ void Simulator::update(const Interface* pUI, void* p)
 
    if (pUI->isSpace())
    {
-      hasFired = true;
-      flightTime = 0;
-      Velocity muzzleVelocity;
-      muzzleVelocity.set(howitzer.getElevation(), howitzer.getMuzzleVelocity());
-      projectile.fire(howitzer.getElevation(), howitzer.getPosition(), muzzleVelocity);
+      if (!hasFired)
+      {
+         hasFired = true;
+         flightTime = 0;
+         Velocity muzzleVelocity;
+         muzzleVelocity.set(howitzer.getElevation(), howitzer.getMuzzleVelocity());
+         projectile.fire(howitzer.getElevation(), howitzer.getPosition(), muzzleVelocity);
+      }
    }
 }

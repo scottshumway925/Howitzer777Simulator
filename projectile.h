@@ -117,6 +117,9 @@ public:
       pvt.t = prev.t + dt;
 
       flightPath.push_back(pvt);
+
+      if (flightPath.size() > 10)
+         flightPath.pop_front();
    }
 
    void draw(ogstream& gout, double flightTime)
@@ -125,6 +128,11 @@ public:
       {
          gout.drawProjectile(projectile.pos, flightTime - projectile.t);
       }
+   }
+
+   Position getPosition()
+   {
+      return flightPath.back().pos;
    }
 
 private:
