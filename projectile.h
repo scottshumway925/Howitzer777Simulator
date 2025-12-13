@@ -132,7 +132,17 @@ public:
 
    Position getPosition()
    {
+      if (flightPath.size() == 0)
+         return Position(0, 0);
+
       return flightPath.back().pos;
+   }
+
+   void RemoveProjectile()
+   {
+      int size = flightPath.size();
+      for (int i = 0; i < size; i++)
+         flightPath.pop_front();
    }
 
 private:

@@ -27,8 +27,17 @@ void Simulator::update(const Interface* pUI, void* p)
    ogstream gout;
    howitzer.draw(gout, flightTime);
    ground.draw(gout);
-   //gout << "Projectile Altitude: " << projectile.getPosition().getMetersY();
-   //gout << "Projectile Position: " << projectile.getPosition().getMetersY();
+
+   gout.setPosition(Position(23000, 19000));
+   gout << "Altitude: " << round(projectile.getPosition().getMetersY()) << "m";
+   gout.setPosition(Position(23000, 18000));
+   gout << "Position: " << round(projectile.getPosition().getMetersX()) << "m";
+   gout.setPosition(Position(23000, 17000));
+   gout << "Target: " << round(ground.getTarget().getMetersX()) << "m";
+   gout.setPosition(Position(23000, 16000));
+   gout << "Flight Time: " << (hasFired? round(flightTime) : 0) << "s";
+   gout.setPosition(Position(23000, 15000));
+   gout << "Angle: " << round(howitzer.getElevation().getDegrees()) << " degrees";
 
    projectile.advance(1);
 
@@ -44,9 +53,10 @@ void Simulator::update(const Interface* pUI, void* p)
       if (y <= ground.getElevationMeters(projectileLocation))
       {
          hasFired = false;
+         projectile.RemoveProjectile();
 
          double targetLocation = ground.getTarget().getMetersX();
-         if (x > (targetLocation - 1000) && (x < targetLocation + 1000))
+         if (x > (targetLocation - 500) && (x < targetLocation + 500))
          {
             resetGame();
          }
